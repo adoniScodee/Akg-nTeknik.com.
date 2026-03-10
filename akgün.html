@@ -1,123 +1,65 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akgün Teknik İşletme</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-import React, { useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  AirVent, 
-  Wrench, 
-  Zap, 
-  Camera, 
-  Tv, 
-  Settings, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  ChevronRight,
-  Menu,
-  X,
-  ShieldCheck,
-  Cpu,
-  MessageCircle
-} from 'lucide-react';
+<body>
 
-// --- Sabitler ---
-const PHONE_NUMBER = "+905511591491";
-const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace('+', '')}?text=Merhaba,%20teknik%20servis%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum.`;
+<header>
+<div class="logo3d">
+<img src="logo.svg">
+</div>
 
-const SERVICES = [
-  { id: 'klima', title: 'Klima Servisi', description: 'Bakım, onarım ve profesyonel montaj hizmetleri.', icon: <AirVent className="w-8 h-8" /> },
-  { id: 'beyaz-esya', title: 'Beyaz Eşya', description: 'Buzdolabı, çamaşır ve bulaşık makinesi teknik desteği.', icon: <Wrench className="w-8 h-8" /> },
-  { id: 'elektrik', title: 'Elektrik Tesisat', description: 'Arıza giderme, yeni tesisat ve pano kurulumu.', icon: <Zap className="w-8 h-8" /> },
-  { id: 'guvenlik', title: 'Güvenlik Sistemleri', description: 'Kamera ve alarm sistemleri kurulum ve bakım.', icon: <Camera className="w-8 h-8" /> },
-  { id: 'tv', title: 'TV & Uydu', description: 'Televizyon tamiri ve uydu sistemleri kurulumu.', icon: <Tv className="w-8 h-8" /> },
-  { id: 'montaj', title: 'Genel Montaj', description: 'Her türlü teknik cihaz ve ekipman montajı.', icon: <Settings className="w-8 h-8" /> },
-];
+<h1>AKGÜN TEKNİK</h1>
+<p>Klima • Beyaz Eşya • Elektrik • Kamera • TV Servisi</p>
+</header>
 
-// --- Bileşenler ---
-const Logo = () => (
-  <div className="flex items-center gap-2 group cursor-pointer">
-    <div className="relative w-10 h-10 bg-black flex items-center justify-center rounded-sm overflow-hidden border border-white/20">
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute inset-0 opacity-20">
-        <div className="w-full h-full border-2 border-dashed border-white rounded-full scale-150" />
-      </motion.div>
-      <Cpu className="w-6 h-6 text-white relative z-10" />
-    </div>
-    <div className="flex flex-col leading-none">
-      <span className="text-xl font-black tracking-tighter uppercase italic">Akgün</span>
-      <span className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">Teknik İşletme</span>
-    </div>
-  </div>
-);
+<section class="hero">
+<h2>Profesyonel Teknik Servis</h2>
+<p>Montaj • Arıza • Kurulum • Teknik Destek</p>
 
-const WhatsAppButton = () => (
-  <motion.a
-    href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-    initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-    whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-    className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center gap-3 group"
-  >
-    <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 font-bold text-xs uppercase tracking-widest whitespace-nowrap">
-      Hemen WhatsApp'tan Yazın
-    </span>
-    <MessageCircle className="w-6 h-6 fill-current" />
-    <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0 bg-[#25D366] rounded-full -z-10" />
-  </motion.a>
-);
+<a class="btn" href="https://wa.me/905511591491">
+WhatsApp'tan Ulaş
+</a>
+</section>
 
-export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+<section class="services">
 
-  return (
-    <div className="min-h-screen bg-[#F5F5F5] text-black font-sans selection:bg-black selection:text-white">
-      <WhatsAppButton />
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-black z-[100] origin-left" style={{ scaleX }} />
+<div class="card">
+<h3>Klima Servisi</h3>
+<p>Montaj • Gaz dolumu • Arıza</p>
+</div>
 
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5 px-6 py-4 flex justify-between items-center">
-        <Logo />
-        <div className="hidden md:flex gap-8 items-center">
-          {['Hakkımızda', 'Hizmetler', 'İletişim'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="text-xs font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">{item}</a>
-          ))}
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:invert transition-all">Teklif Al</a>
-        </div>
-        <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>{isMenuOpen ? <X /> : <Menu />}</button>
-      </nav>
+<div class="card">
+<h3>Beyaz Eşya</h3>
+<p>Tamir • Kurulum • Bakım</p>
+</div>
 
-      <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none select-none overflow-hidden">
-          <div className="flex whitespace-nowrap animate-marquee">
-            {Array(10).fill("AKGÜN TEKNİK ").map((t, i) => (<span key={i} className="text-[30vh] font-black italic">{t}</span>))}
-          </div>
-        </div>
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="relative z-10 text-center">
-          <div className="inline-flex items-center gap-3 mb-8 px-4 py-1 border border-black/10 rounded-full bg-white/50 backdrop-blur-sm">
-            <ShieldCheck className="w-4 h-4" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">7/24 Profesyonel Teknik Servis</span>
-          </div>
-          <h1 className="text-6xl md:text-9xl font-black italic uppercase tracking-tighter leading-none mb-8">
-            <span className="block">Akgün</span>
-            <span className="block outline-text text-transparent" style={{ WebkitTextStroke: '2px black' }}>Teknik</span>
-          </h1>
-          <p className="max-w-xl mx-auto text-sm md:text-base text-black/60 font-medium leading-relaxed mb-12">Klima, beyaz eşya, elektrik ve güvenlik sistemlerinde uzman kadromuzla hızlı, güvenilir ve garantili çözümler sunuyoruz.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#hizmetler" className="bg-black text-white px-10 py-4 font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform flex items-center justify-center">Hizmetlerimizi İnceleyin</a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="border border-black px-10 py-4 font-bold uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-all flex items-center justify-center">Bize Ulaşın</a>
-          </div>
-        </motion.div>
-      </section>
+<div class="card">
+<h3>Elektrik</h3>
+<p>Tesisat • Arıza • Kurulum</p>
+</div>
 
-      {/* Diğer bölümler (Hizmetler, Hakkımızda, İletişim) buraya gelecek... */}
+<div class="card">
+<h3>Güvenlik Kamera</h3>
+<p>Kamera sistemleri kurulumu</p>
+</div>
 
-      <style>{`
-        .outline-text { -webkit-text-stroke: 1px black; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { animation: marquee 40s linear infinite; }
-      `}</style>
-    </div>
-  );
-}
+<div class="card">
+<h3>TV Servisi</h3>
+<p>TV montaj ve tamir</p>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 AKGÜN TEKNİK İŞLETME</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
