@@ -8,72 +8,54 @@ text-align:center;
 
 header{
 padding:40px;
-border-bottom:1px solid #444;
 }
 
-.logo{
-font-size:40px;
-letter-spacing:5px;
-animation: glow 3s infinite alternate;
+.logo3d img{
+width:120px;
+animation:spin 6s linear infinite;
 }
 
-@keyframes glow{
-from{text-shadow:0 0 10px white;}
-to{text-shadow:0 0 30px white;}
+@keyframes spin{
+0%{transform:rotateY(0deg)}
+100%{transform:rotateY(360deg)}
 }
 
 .hero{
-padding:80px 20px;
+padding:60px;
+background:#111;
 }
 
 .btn{
+display:inline-block;
+padding:15px 30px;
 background:white;
 color:black;
-padding:15px 30px;
 text-decoration:none;
-font-weight:bold;
 border-radius:8px;
-transition:0.3s;
-}
-
-.btn:hover{
-background:#ccc;
+margin-top:20px;
+font-weight:bold;
 }
 
 .services{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
 padding:40px;
 }
 
 .card{
 background:#111;
-border:1px solid #333;
-margin:10px;
-padding:20px;
-width:220px;
+padding:25px;
 border-radius:10px;
 transition:0.3s;
 }
 
 .card:hover{
 transform:scale(1.05);
+background:#222;
 }
 
 footer{
 padding:20px;
-border-top:1px solid #333;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px 20px;
-border-radius:50px;
-text-decoration:none;
-font-weight:bold;
+background:#111;
 }
